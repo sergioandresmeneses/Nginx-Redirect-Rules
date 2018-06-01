@@ -23,4 +23,10 @@ location ~* (wp-login)\.php$ {
             include        fastcgi_params;
 }
 
-Simulating Conditions
+#Simulating Conditions
+#In this case, we will redirect all the traffic to HTTP but some special URLS to HTTPS such as /cart/checkout/wp-content/
+
+set $redirect_http 0;
+if($scheme = 'https'){set $reditect_http 1;}
+if($request_uri !~ "/(checkout|cart|wp-content)"){set $redirect_http 1$redirect_http;}
+if($redirect_http = 11){rewrite ^/(.+) https://$host/$1 permanent;}
