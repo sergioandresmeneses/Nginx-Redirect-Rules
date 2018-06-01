@@ -1,10 +1,9 @@
 
+#redirect all the traffic to HTTPS.
 if ($scheme = http) { rewrite ^/(.*) https://$host/$1 permanent; }
-if ($request_uri !~ "^/wp-"){return 301 https://new-domain.com ; }
 
-
+#Remove the date (year/month/day) format.
 rewrite "^/\d{4}/\d{1,2}/\d{1,2}/([^/]+)/?$" /$1 permanent;
-
 
 #redirecting all traffic to Google
 return 301 http://google.com;
@@ -13,8 +12,7 @@ return 301 http://google.com;
 if ($request_uri !~ "^/(wp-|feed/podcast)"){return 301 http://google.com ; }
 
 
-Basic-Auth for the WP Dashboard
-
+#Basic-Auth for the WP Dashboard
 location ~* (wp-login)\.php$ {
             auth_basic "Administrator Login";
             auth_basic_user_file /etc/nginx/conf.d/.htpasswd;
@@ -25,7 +23,6 @@ location ~* (wp-login)\.php$ {
 
 #Simulating Conditions
 #In this case, we will redirect all the traffic to HTTP but some special URLS to HTTPS such as /cart/checkout/wp-content/
-
 set $redirect_http 0;
 if($scheme = 'https'){set $reditect_http 1;}
 if($request_uri !~ "/(checkout|cart|wp-content)"){set $redirect_http 1$redirect_http;}
