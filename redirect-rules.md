@@ -1,4 +1,4 @@
- = Table of Content =
+# Table of Content 
 
  1 Redirecting all the traffic to HTTPS.
  2 Remove the date (year/month/day) format.
@@ -7,17 +7,17 @@
  
  
 
-**Redirect all the traffic to HTTPS**
+##Redirect all the traffic to HTTPS
 
 `if ($scheme = http) { rewrite ^/(.*) https://$host/$1 permanent; }`
 
 ---
-**Remove the date (year/month/day) format**
+##Remove the date (year/month/day) format
 
 `rewrite "^/\d{4}/\d{1,2}/\d{1,2}/([^/]+)/?$" /$1 permanent;`
 
 ---
-**Redirecting all traffic to Google**
+##Redirecting all traffic to Google
 
 `return 301 http://google.com;`
 
@@ -26,7 +26,7 @@
 `if ($request_uri !~ "^/(wp-|feed/podcast)"){return 301 http://google.com ; }`
 
 ---
-**Basic-Auth for the WP Dashboard**
+##Basic-Auth for the WP Dashboard
 
 `location ~* (wp-login)\.php$ {
             auth_basic "Administrator Login";
@@ -37,7 +37,7 @@
 }`
 
 ---
-**Simulating Conditions**
+##Simulating Conditions
 
 In this case, we will redirect all the traffic to HTTP but some special URLS to HTTPS such as /cart/checkout/wp-content/
 
