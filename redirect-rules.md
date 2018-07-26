@@ -1,20 +1,27 @@
+ = Table of Content =
 
-**Redirect all the traffic to HTTPS.**
+ 1 Redirecting all the traffic to HTTPS.
+ 2 Remove the date (year/month/day) format.
+ 3 Redirecting all traffic to Google or another site.
+ 4 Basic-Auth for the WP Dashboard.
+ 
+ 
+
+**Redirect all the traffic to HTTPS**
 
 `if ($scheme = http) { rewrite ^/(.*) https://$host/$1 permanent; }`
 
 ---
-**Remove the date (year/month/day) format.**
+**Remove the date (year/month/day) format**
 
 `rewrite "^/\d{4}/\d{1,2}/\d{1,2}/([^/]+)/?$" /$1 permanent;`
 
 ---
-**redirecting all traffic to Google**
+**Redirecting all traffic to Google**
 
 `return 301 http://google.com;`
 
----
-*Redirecting all the traffic to another site (google.com for example) but keeping the Dashboard and our podcasts feed intact*
+>Redirecting all the traffic to another site (google.com for example) but keeping the Dashboard and our podcasts feed intact
 
 `if ($request_uri !~ "^/(wp-|feed/podcast)"){return 301 http://google.com ; }`
 
