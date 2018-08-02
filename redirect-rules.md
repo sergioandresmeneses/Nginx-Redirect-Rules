@@ -1,9 +1,9 @@
 # Table of Content 
 
- 1 Redirecting all the traffic to HTTPS
- 2 Remove the date (year/month/day) format
- 3 Redirecting all traffic to Google or another site
- 4 Basic-Auth for the WP Dashboard
+ 1. Redirecting all the traffic to HTTPS
+ 2. Remove the date (year/month/day) format
+ 3. Redirecting all traffic to Google or another site
+ 4. Basic-Auth for the WP Dashboard
  
  
 
