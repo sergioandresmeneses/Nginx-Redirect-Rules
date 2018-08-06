@@ -28,6 +28,8 @@
 ---
 ## Basic-Auth for the WP Dashboard
 
+
+ - For files:
 ```
 location ~* (wp-login)\.php$ {
             auth_basic "Administrator Login";
@@ -37,6 +39,30 @@ location ~* (wp-login)\.php$ {
             include        fastcgi_params;
 }
 ```
+
+ - For directories:
+ 
+```
+location /path/ {
+            auth_basic "Administrator Login";
+            auth_basic_user_file /etc/nginx/conf.d/.htpasswd;
+            
+}
+```
+
+ - For the whole site:
+
+```
+location / {
+            auth_basic "Administrator Login";
+            auth_basic_user_file /etc/nginx/conf.d/.htpasswd;
+            index index.html index.htm index.php;
+            if (!-e $request_filename) { rewrite . /index.php last; }
+            
+}
+```
+ 
+More info about the generation of the .htpasswd and this process in the [official Nginx Documentation](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/)
 
 ---
 ## Simulating Conditions
