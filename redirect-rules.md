@@ -11,6 +11,10 @@
 
 `if ($scheme = http) { rewrite ^/(.*) https://$host/$1 permanent; }`
 
+## Force WWW on all your pages
+
+ `if ($host !~ "^www.") { return 301 $scheme://www.$host$request_uri; }`
+
 ---
 ## Remove the date (year/month/day) format
 
