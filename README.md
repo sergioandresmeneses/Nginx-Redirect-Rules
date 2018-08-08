@@ -54,6 +54,9 @@ location /path/ {
 }
 ```
 
+ > If you want to see PHP files, directly we recommend you to add the same PHP directives shown in the previous block of code.
+ 
+
  - For the whole site:
 
 ```
