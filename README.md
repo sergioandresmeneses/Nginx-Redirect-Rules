@@ -6,11 +6,18 @@
  4. Basic-Auth for the WP Dashboard
  
  
+---
+## Redirect query requests
+For example, the URL http://mydomain/?page_id=197 to http://mydomain/contact
 
+`if ($query_string ~ "page_id=197") {rewrite "^/$" http://mydomain/contact? permanent;}`
+
+---
 ## Redirect all the traffic to HTTPS
 
 `if ($scheme = http) { rewrite ^/(.*) https://$host/$1 permanent; }`
 
+---
 ## Force WWW on all your pages
 
  `if ($host !~ "^www.") { return 301 $scheme://www.$host$request_uri; }`
